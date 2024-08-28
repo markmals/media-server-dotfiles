@@ -1,0 +1,25 @@
+version: "3.3"
+services:
+    transmission-openvpn:
+        container_name: transmission-openvpn
+        image: haugene/transmission-openvpn
+        restart: unless-stopped
+        cap_add:
+            - NET_ADMIN
+        ports:
+            - "9091:9091"
+        volumes:
+            - "/Volumes/HDD/Downloads/:/data"
+            - "~/.transmission-openvpn/config/:/config"
+            - "~/.transmission-openvpn/vpn-config/:/etc/openvpn/custom"
+        environment:
+            - OPENVPN_PROVIDER=custom
+            - OPENVPN_CONFIG=us_texas
+            - OPENVPN_USERNAME=user
+            - OPENVPN_PASSWORD=pass
+            - LOCAL_NETWORK=172.20.0.0/16
+            # - DEBUG=true
+        logging:
+            driver: json-file
+            options:
+                max-size: 10m
