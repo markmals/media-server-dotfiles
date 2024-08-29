@@ -1,45 +1,52 @@
 tap "homebrew/bundle"
-tap "homebrew/cask-versions"
 tap "homebrew/services"
-tap "buo/cask-upgrade"
 tap "markmals/media-server"
-tap "xcodesorg/made"
 
-# Media tools
+# Media Tools
 brew "ffmpeg"
 brew "yt-dlp"
 brew "vimeo-dl"
 
-# Network tools
+# Network Tools
 brew "cloudflared"
 brew "httpd"
 
-# Developer tools
-brew "xcodes"
-brew "docker"
+if OS.linux?
+    brew "docker"
+    brew "docker-compose"
+end
 
-# Utilities
-brew "mas"
-brew "trash"
+if OS.mac?
+    tap "buo/cask-upgrade"
+    tap "artginzburg/tap"
 
-# GUI apps
-cask "1password"
-cask "arc"
-cask "iina"
-cask "istat-menus"
-cask "orbstack"
-cask "visual-studio-code"
-mas "Meta", id: 558317092
-mas "Pastebot", id: 1179623856
+    # Utilities
+    brew "mas"
+    brew "trash"
+    brew "sudo-touchid", restart_service: true
 
-vscode "antfu.file-nesting"
-vscode "bierner.markdown-preview-github-styles"
-vscode "esbenp.prettier-vscode"
-vscode "github.github-vscode-theme"
-vscode "miguelsolorio.fluent-icons"
-vscode "miguelsolorio.symbols"
-vscode "ms-vscode-remote.remote-containers"
-vscode "ms-vscode-remote.remote-ssh"
-vscode "ms-vscode-remote.remote-ssh-edit"
-vscode "ms-vscode.remote-explorer"
-vscode "redhat.vscode-xml"
+    # GUI Apps
+    cask "1password"
+    cask "arc"
+    cask "docker"
+    cask "iina"
+    cask "istat-menus"
+    cask "orbstack"
+    cask "plex-media-server"
+    cask "visual-studio-code"
+    mas "Meta", id: 558317092
+    mas "Pastebot", id: 1179623856
+    
+    # Visual Studio Code Extensions
+    vscode "antfu.file-nesting"
+    vscode "bierner.markdown-preview-github-styles"
+    vscode "esbenp.prettier-vscode"
+    vscode "github.github-vscode-theme"
+    vscode "miguelsolorio.fluent-icons"
+    vscode "miguelsolorio.symbols"
+    vscode "ms-vscode-remote.remote-containers"
+    vscode "ms-vscode-remote.remote-ssh"
+    vscode "ms-vscode-remote.remote-ssh-edit"
+    vscode "ms-vscode.remote-explorer"
+    vscode "redhat.vscode-xml"
+end
