@@ -28,7 +28,6 @@ if OS.mac?
     # GUI Apps
     cask "1password"
     cask "arc"
-    cask "docker"
     cask "iina"
     cask "istat-menus"
     cask "orbstack"
